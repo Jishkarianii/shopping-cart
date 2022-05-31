@@ -1,0 +1,23 @@
+import './App.scss';
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import All from './pages/All';
+import Men from "./pages/Men"
+import Women from './pages/Women';
+import Kids from './pages/Kids';
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+            <Route index element={<All />} />
+            <Route path="/men" element={<Men />} />
+            <Route path="/women" element={<Women />} />
+            <Route path="/kids" element={<Kids />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
