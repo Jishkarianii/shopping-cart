@@ -1,5 +1,10 @@
 @import "./components/scss/variables.scss";
 
+@font-face {
+  font-family: "AdihausDIN";
+  src: url("./fonts/AdihausDIN-Regular.woff2");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +13,14 @@
   color: $primary-color;
 }
 
-@font-face {
-  font-family: "AdihausDIN";
-  src: url("./fonts/AdihausDIN-Regular.woff2");
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1430px;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
 }

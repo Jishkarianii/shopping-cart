@@ -1,7 +1,8 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import Header from "./components/Header";
 import All from './pages/All';
-import Men from "./pages/Men"
+import Men from './pages/Men';
 import Women from './pages/Women';
 import Kids from './pages/Kids';
 
@@ -9,6 +10,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header />
         <Routes>
             <Route index element={<All />} />
             <Route path="/men" element={<Men />} />
