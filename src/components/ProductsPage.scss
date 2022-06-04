@@ -67,3 +67,34 @@
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     }
 }
+
+@media screen and (max-width: 430px) {
+    .products-page {
+        .products-page-head {
+            margin-top: 20px;
+    
+            h2 {
+                margin-bottom: -8px;
+                font-size: 36px;
+            }
+    
+            .sort-products {
+                padding: 6px 8px 6px 0px;
+                min-width: unset;
+
+                .chosen-option {
+                    display: none;
+                }
+
+                .sort-options {
+                    left: -90px;
+                    width: 130px;
+                }
+            }
+        }
+
+        .products-page-content {
+            margin-top: 20px;
+        }
+    }    
+}

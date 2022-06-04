@@ -20,7 +20,7 @@ function ProductsPage({ title, products }) {
                         setShowSort(!showSort)
                     }}
                 >
-                    {choosedOption} <TuneIcon />
+                    <span className="chosen-option">{choosedOption}</span> <TuneIcon />
                     {showSort && (
                         <motion.div
                             className="sort-options"

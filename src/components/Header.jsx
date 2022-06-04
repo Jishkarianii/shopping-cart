@@ -7,8 +7,12 @@ import LocalShippingOutlinedIcon from '@mui/icons-material/LocalShippingOutlined
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from '@mui/icons-material/Menu';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function Header() {
+    const [sideMenu, setSideMenu] = useState(false)
+    const [searchBar, setSearchBar] = useState(false)
     const [searchValue, setSearchValue] = useState("")
 
     useEffect(() => {
@@ -24,12 +28,30 @@ function Header() {
     }
 
     return (
-        <header>
+        <header className={searchBar ? "searchbar-active" : ""}>
             <div className="top-bar">
                 <LocalShippingOutlinedIcon />
                 <Link to="/">FREE STANDARD SHIPPING & RETURNS | JOIN NOW</Link>
             </div>
             <nav className="nav-bar container">
+                <MenuIcon 
+                    className="menu-icon" 
+                    onClick={() => {
+                        setSideMenu(true)
+                    }}
+                />
+                <div className={`side-menu ${sideMenu ? "active" : ""}`}>
+                    <div className="side-menu-head">
+                        <img src="./icon/adidas-logo.svg" alt="adidas logo" />
+                        <CloseIcon onClick={() => setSideMenu(false)} />
+                    </div>
+                    <ul>
+                        <li><NavLink className={navData => navData.isActive ? "active" : ""} onClick={() => setSideMenu(false)} to="/">ALL</NavLink><KeyboardArrowRightIcon /></li>
+                        <li><NavLink className={navData => navData.isActive ? "active" : ""} onClick={() => setSideMenu(false)} to="/men">MEN</NavLink><KeyboardArrowRightIcon /></li>
+                        <li><NavLink className={navData => navData.isActive ? "active" : ""} onClick={() => setSideMenu(false)} to="/women">WOMEN</NavLink><KeyboardArrowRightIcon /></li>
+                        <li><NavLink className={navData => navData.isActive ? "active" : ""} onClick={() => setSideMenu(false)} to="/kids">KIDS</NavLink><KeyboardArrowRightIcon /></li>
+                    </ul>
+                </div>
                 <div className="logo-cont">
                     <Link to="/"><img src="./icon/adidas-logo.svg" alt="adidas logo" /></Link>
                 </div>
@@ -40,7 +62,7 @@ function Header() {
                     <li><NavLink className={navData => navData.isActive ? "active" : ""} to="/kids">KIDS</NavLink></li>
                 </ul>
                 <div className="right-side-cont">
-                    <div className="search-cont">
+                    <div className={`search-cont ${searchBar ? "active" : ""}`}>
                         <input 
                             type="text"
                             placeholder="Search"
@@ -50,22 +72,28 @@ function Header() {
                             }}
                         />
                         {searchValue === "" ? (
-                            <SearchIcon />
-                        ) : (
-                            <CloseIcon onClick={clearSearchBar} />
+                                <SearchIcon />
+                            ) : (
+                                <CloseIcon onClick={clearSearchBar} />
                         )}
                     </div>
                     <div className="shopping-bag-cont">
                         {/* { When this condition is true && (
                             <motion.div 
-                                className="cart-counter"
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                transition={{ duration: 0.4 }}
+                            className="cart-counter"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.4 }}
                             >
-                                1
+                            1
                             </motion.div>
                         )} */}
+                        <SearchIcon 
+                            className="search-icon" 
+                            onClick={() => {
+                                setSearchBar(!searchBar)
+                            }}
+                        />
                         <PersonOutlinedIcon />
                         <ShoppingBagOutlinedIcon />
                     </div>
