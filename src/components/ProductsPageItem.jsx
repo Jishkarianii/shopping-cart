@@ -15,8 +15,8 @@ function ProductsPageItem({ defaultPhoto, hoverPhoto, currentPrice, oldPrice, ti
                 <div className="product-price">
                     {oldPrice !== null ? (
                     <>
+                        <span className="old-price active">${oldPrice}</span>
                         <span className="current-price active">${currentPrice}</span>
-                        <span className="old-price">${oldPrice}</span>
                     </>
                     ) : (
                         <span className="current-price">${currentPrice}</span>

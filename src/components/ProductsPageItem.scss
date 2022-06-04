@@ -29,15 +29,15 @@
             background-color: white;
             font-size: 14px;
             transition: 0.2s;
-
-            .current-price.active {
-                text-decoration: line-through;
-                opacity: 0.6;
-            }
             
-            .old-price {
+            .current-price.active {
                 margin-left: 5px;
                 color: red;
+            }
+
+            .old-price.active {
+                text-decoration: line-through;
+                opacity: 0.6;
             }
         }
     }
