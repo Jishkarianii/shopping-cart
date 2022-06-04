@@ -1,0 +1,64 @@
+@import "./scss/variables.scss";
+
+.product-item {
+    border: 1px solid transparent;
+    cursor: pointer;
+    
+    &:hover {
+        border: 1px solid $primary-color;
+
+        .product-photo {
+            .product-price {
+                bottom: 10px;
+            }
+        }
+    }
+
+    .product-photo {
+        position: relative;
+
+        img {
+            width: 100%;
+        }
+
+        .product-price {
+            position: absolute;
+            bottom: 0;
+            left: 5px;
+            padding: 3px;
+            background-color: white;
+            font-size: 14px;
+            transition: 0.2s;
+
+            .current-price.active {
+                text-decoration: line-through;
+                opacity: 0.6;
+            }
+            
+            .old-price {
+                margin-left: 5px;
+                color: red;
+            }
+        }
+    }
+
+    .product-info {
+        padding: 8px;
+
+        h5 {
+            font-size: 13px;
+        }
+
+        p {
+            margin: 4px 0;
+            opacity: 0.8;
+            font-size: 12px;
+        }
+
+        span {
+            display: block;
+            padding-bottom: 10px;
+            font-size: 13px;
+        }
+    }
+}
