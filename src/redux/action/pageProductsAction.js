@@ -1,6 +1,7 @@
-export const setIsLoad = () => {
+export const setIsLoad = value => {
     return {
-        type: "SET_IS_LOAD"
+        type: "SET_IS_LOAD",
+        payload: value
     }
 }
 

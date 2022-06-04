@@ -17,7 +17,7 @@ function ProductsPage({ title }) {
 
     useEffect(() => {
         dispatch(setFiltered(products))
-    }, [])
+    }, [products])
 
     useEffect(() => {
         sortHendler()        

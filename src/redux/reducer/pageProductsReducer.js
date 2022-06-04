@@ -9,7 +9,7 @@ const pageProductsReducer = (state = initialState, action) => {
         case "SET_IS_LOAD": 
             return {
                 ...state, 
-                isLoaded: true
+                isLoaded: action.payload
             }
         case "SET_PRODUCTS":
             return {

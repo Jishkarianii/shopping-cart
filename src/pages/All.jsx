@@ -15,9 +15,10 @@ function All() {
     }, [])
     
     const getAllProducts = async () => {
+        dispatch(setIsLoad(false))
         const res = await axios.get("./local-json/productsData.json")
         dispatch(setProducts(res.data))
-        dispatch(setIsLoad())
+        dispatch(setIsLoad(true))
     }
 
     return (
