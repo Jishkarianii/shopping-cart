@@ -5,6 +5,7 @@ import All from './pages/All';
 import Men from './pages/Men';
 import Women from './pages/Women';
 import Kids from './pages/Kids';
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Route path="/women" element={<Women />} />
             <Route path="/kids" element={<Kids />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
