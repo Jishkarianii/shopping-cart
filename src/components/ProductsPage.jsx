@@ -1,14 +1,30 @@
 import "./ProductsPage.scss"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion"
 import TuneIcon from '@mui/icons-material/Tune';
 import ProductsPageItem from "./ProductsPageItem";
 
 function ProductsPage({ title, products }) {
     const [showSort, setShowSort] = useState(false)
-    const [choosedOption, setChoosedOption] = useState("Filter & Sort")
+    const [sortedProducts, setSortedProducts] = useState(products)
+    const [chosenOption, setChosenOption] = useState("Filter & Sort")
 
-    // Responsive for grid container
+    useEffect(() => {
+        sortHendler()
+    }, [chosenOption])
+
+    // Sort products by chosen option
+    const sortHendler = () => {
+        if (chosenOption === "Newest") {
+            setSortedProducts(products)
+        } else if (chosenOption === "Price (high - low)") {
+            const sorted = [...products].sort((a, b) => b.currentPrice - a.currentPrice)
+            setSortedProducts(sorted)
+        } else if (chosenOption === "Price (low - high)") {
+            const sorted = [...products].sort((a, b) => a.currentPrice - b.currentPrice)
+            setSortedProducts(sorted)
+        }
+    }
 
     return (
         <section className='products-page container'>
@@ -20,7 +36,7 @@ function ProductsPage({ title, products }) {
                         setShowSort(!showSort)
                     }}
                 >
-                    <span className="chosen-option">{choosedOption}</span> <TuneIcon />
+                    <span className="chosen-option">{chosenOption}</span> <TuneIcon />
                     {showSort && (
                         <motion.div
                             className="sort-options"
@@ -35,20 +51,20 @@ function ProductsPage({ title, products }) {
                             transition={{ duration: 0.1 }}
                         >
                             <span
-                                className={choosedOption === "Newest" ? "active" : ""}
-                                onClick={() => setChoosedOption("Newest")}
+                                className={chosenOption === "Newest" ? "active" : ""}
+                                onClick={() => setChosenOption("Newest")}
                             >
                                 Newest
                             </span>
                             <span
-                                className={choosedOption === "Price (high - low)" ? "active" : ""}
-                                onClick={() => setChoosedOption("Price (high - low)")}
+                                className={chosenOption === "Price (high - low)" ? "active" : ""}
+                                onClick={() => setChosenOption("Price (high - low)")}
                             >
                                 Price (high - low)
                             </span>
                             <span
-                                className={choosedOption === "Price (low - high)" ? "active" : ""}
-                                onClick={() => setChoosedOption("Price (low - high)")}
+                                className={chosenOption === "Price (low - high)" ? "active" : ""}
+                                onClick={() => setChosenOption("Price (low - high)")}
                             >
                                 Price (low - high)
                             </span>
@@ -65,7 +81,7 @@ function ProductsPage({ title, products }) {
                 ></div>
             )}
             <div className="products-page-content">
-                {products.map(product => (
+                {sortedProducts.map(product => (
                     <ProductsPageItem 
                         key={product.id}
                         defaultPhoto={product.photo_1}
