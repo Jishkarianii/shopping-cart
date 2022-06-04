@@ -1,5 +1,7 @@
 import "./Header.scss"
 import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { setFiltered } from "../redux/action/pageProductsAction";
 import { Link, NavLink } from "react-router-dom";
 import { motion } from "framer-motion";
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,6 +13,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function Header() {
+    const products = useSelector(state => state.pageProducts.products)
+    const dispatch = useDispatch()
+
     const [sideMenu, setSideMenu] = useState(false)
     const [searchBar, setSearchBar] = useState(false)
     const [searchValue, setSearchValue] = useState("")
@@ -20,7 +25,18 @@ function Header() {
     }, [searchValue])
 
     const searchHandler = () => {
-        console.log(searchValue)
+        // Regex for whitespace
+        const regex = /^(?!\s*$).+/;
+        const checkInp = regex.test(searchValue);
+
+        if (searchValue || searchValue === "") {
+            // Filtering current page products
+            const searchedProducts = products.filter(product => {
+                return product.title.toLowerCase().includes(searchValue.toLowerCase())
+            })
+    
+            dispatch(setFiltered(searchedProducts))
+        }
     }
 
     const clearSearchBar = () => {

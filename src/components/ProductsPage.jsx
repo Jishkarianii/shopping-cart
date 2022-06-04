@@ -1,28 +1,38 @@
 import "./ProductsPage.scss"
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"
+import { useSelector, useDispatch } from "react-redux";
+import { setFiltered } from "../redux/action/pageProductsAction";
+import { motion } from "framer-motion";
 import TuneIcon from '@mui/icons-material/Tune';
 import ProductsPageItem from "./ProductsPageItem";
+import NoResults from "./NoResults";
 
-function ProductsPage({ title, products }) {
+function ProductsPage({ title }) {
+    const products = useSelector(state => state.pageProducts.products)
+    const filtered = useSelector(state => state.pageProducts.filtered)
+    const dispatch = useDispatch()
+
     const [showSort, setShowSort] = useState(false)
-    const [sortedProducts, setSortedProducts] = useState(products)
     const [chosenOption, setChosenOption] = useState("Filter & Sort")
 
     useEffect(() => {
-        sortHendler()
+        dispatch(setFiltered(products))
+    }, [])
+
+    useEffect(() => {
+        sortHendler()        
     }, [chosenOption])
 
-    // Sort products by chosen option
+    // Sort all products by chosen option
     const sortHendler = () => {
         if (chosenOption === "Newest") {
-            setSortedProducts(products)
+            dispatch(setFiltered(products))
         } else if (chosenOption === "Price (high - low)") {
             const sorted = [...products].sort((a, b) => b.currentPrice - a.currentPrice)
-            setSortedProducts(sorted)
+            dispatch(setFiltered(sorted))
         } else if (chosenOption === "Price (low - high)") {
             const sorted = [...products].sort((a, b) => a.currentPrice - b.currentPrice)
-            setSortedProducts(sorted)
+            dispatch(setFiltered(sorted))
         }
     }
 
@@ -81,16 +91,23 @@ function ProductsPage({ title, products }) {
                 ></div>
             )}
             <div className="products-page-content">
-                {sortedProducts.map(product => (
-                    <ProductsPageItem 
-                        key={product.id}
-                        defaultPhoto={product.photo_1}
-                        hoverPhoto={product.photo_2}
-                        currentPrice={product.currentPrice}
-                        oldPrice={product.oldPrice}
-                        title={product.title}
-                    />
-                ))}
+                {filtered.length ? (
+                    <>
+                        {filtered.map(product => (
+                            <ProductsPageItem 
+                                key={product.id}
+                                defaultPhoto={product.photo_1}
+                                hoverPhoto={product.photo_2}
+                                currentPrice={product.currentPrice}
+                                oldPrice={product.oldPrice}
+                                title={product.title}
+                            />
+                        ))}
+                    
+                    </>
+                ) : (
+                    <NoResults />
+                )}
             </div>
         </section>
     )

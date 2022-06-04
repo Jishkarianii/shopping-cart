@@ -1,6 +1,8 @@
 @import "./scss/variables.scss";
 
 .products-page {
+    min-height: calc(100vh - 205px);
+
     .products-page-head {
         margin-top: 25px;
         display: flex;

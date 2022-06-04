@@ -1,29 +1,31 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setProducts } from '../redux/action/pageProductsAction'
+import { setIsLoad } from '../redux/action/pageProductsAction'
 import ProductsPage from '../components/ProductsPage'
 import Spinner from '../components/Spinner'
 
 function All() {
-    const [allProducts, setAllProducts] = useState([])
-    const [isLoaded, setIsLoaded] = useState(false)
+    const isLoaded = useSelector(state => state.pageProducts.isLoaded)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         getAllProducts()
     }, [])
-
+    
     const getAllProducts = async () => {
         const res = await axios.get("./local-json/productsData.json")
-        setAllProducts(res.data)
-        setIsLoaded(true)
+        dispatch(setProducts(res.data))
+        dispatch(setIsLoad())
     }
 
     return (
         <>
             {isLoaded ? (
                 <ProductsPage 
-                    title="ALL PRODUCTS"
-                    products={allProducts}
-                />
+                  title="ALL PRODUCTS"
+                />  
             ) : (
                 <Spinner />
             )}
