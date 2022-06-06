@@ -18,6 +18,11 @@
   color: $primary-color;
 }
 
+*::selection{
+  color: white;
+  background-color: $primary-color;
+}
+
 a {
   color: unset;
   text-decoration: none;

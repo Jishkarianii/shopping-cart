@@ -1,12 +1,19 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import "./ProductsPageItem.scss"
 
-function ProductsPageItem({ defaultPhoto, hoverPhoto, currentPrice, oldPrice, title }) {
+function ProductsPageItem({ id, defaultPhoto, hoverPhoto, currentPrice, oldPrice, title }) {
     const [photo, setPhoto] = useState(defaultPhoto)
+    const navigate = useNavigate()
+
+    const navigateHendler = () => {
+        navigate(`/product?id=${id}`)
+    }
 
     return (
         <div 
             className="product-item" 
+            onClick={navigateHendler}
             onMouseEnter={() => setPhoto(hoverPhoto)}
             onMouseOut={() => setPhoto(defaultPhoto)}
         >

@@ -1,0 +1,143 @@
+@import "./scss/variables.scss";
+
+.product-inner {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    .product-wrapper {
+        margin-top: 40px;
+        display: flex;
+
+        .product-photos {
+            max-width: 450px;
+
+            img {
+                width: 100%;
+            }
+
+            .all-photos {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+
+                img {
+                    border: 1px solid transparent;
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+                
+                img:hover {
+                    border: 1px solid $primary-color;
+                    opacity: 1;
+                }
+                
+                img.active {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .product-info {
+            max-width: 580px;
+            margin-top: 50px;
+            margin-left: 50px;
+
+            h2 {
+                font-size: 30px;
+            }
+
+            h4 {
+                margin: 5px 0;
+                font-family: "AdihausDIN Cn";
+                font-weight: normal;
+                font-size: 30px;
+            }
+
+            .current-price {
+                margin-top: 20px;
+                display: block;
+                font-size: 25px;
+                font-weight: bold;
+
+                &.active {
+                    color: rgb(235, 0, 0);
+                }
+            }
+
+            .old-price {
+                margin-top: 10px;
+                display: block;
+                font-size: 16px;
+                font-weight: bold;
+                text-decoration: line-through;
+                opacity: 0.5;
+            }
+
+            .product-buy-cont {
+                max-width: 350px;
+                margin-top: 20px;
+                display: flex;
+
+                .product-amount {
+                    padding: 10px;
+                    width: 180px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    border: 1px solid $primary-color;
+    
+                    svg {
+                        cursor: pointer;
+                    }
+                }
+
+                .btn {
+                    margin-left: 20px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .product-inner {
+        .product-wrapper {
+            margin-top: 15px;
+            display: grid;
+
+            .product-photos {
+                max-width: 580px;
+
+                .all-photos {                    
+                    img:hover {
+                        border: transparent;
+                    }
+                }
+            }
+
+            .product-info {
+                margin-top: 30px;
+                margin-left: 0;
+
+                .product-buy-cont {
+                    max-width: 100%;
+                    margin-top: 20px;
+                    display: block;
+    
+                    .product-amount {
+                        padding: 9px;
+                        width: 100%;
+                        justify-content: space-around;
+                    }
+    
+                    .btn {
+                        margin-top: 15px;
+                        margin-left: 0;
+                        margin-bottom: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

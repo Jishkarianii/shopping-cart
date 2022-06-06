@@ -11,6 +11,7 @@ function Women() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         getWomenProducts()
     }, [])
     

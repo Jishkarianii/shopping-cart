@@ -11,6 +11,7 @@ function All() {
     const dispatch = useDispatch()
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         getAllProducts()
     }, [])
     

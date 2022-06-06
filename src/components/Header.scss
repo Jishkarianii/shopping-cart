@@ -39,7 +39,7 @@ header {
         }
 
         .side-menu {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: -100%;
             width: 100%;
@@ -209,6 +209,10 @@ header {
         .nav-bar {
             align-items: center;
             background-color: white;
+
+            .logo-cont {
+                transform: translateX(100%);
+            }
     
             .menu-icon {
                 display: block;

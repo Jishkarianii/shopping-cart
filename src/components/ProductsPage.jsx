@@ -96,6 +96,7 @@ function ProductsPage({ title }) {
                         {filtered.map(product => (
                             <ProductsPageItem 
                                 key={product.id}
+                                id={product.id}
                                 defaultPhoto={product.photo_1}
                                 hoverPhoto={product.photo_2}
                                 currentPrice={product.currentPrice}
