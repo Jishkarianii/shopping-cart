@@ -13,6 +13,7 @@ function ProductInner() {
     const [photo, setPhoto] = useState({})
     const [amount, setAmount] = useState(1)
     const [price, setPrice] = useState(0)
+    const [oldPrice, setOldPrice] = useState(0)
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
@@ -25,6 +26,7 @@ function ProductInner() {
         const matchedProduct = res.data.filter(product => product.id == searchParams.get("id"))
         setPhoto({ url: matchedProduct[0].photo_1, id: 1 })
         setPrice(matchedProduct[0].currentPrice)
+        setOldPrice(matchedProduct[0].oldPrice)
         setProduct(matchedProduct[0])
         setIsLoaded(true)
     }
@@ -32,12 +34,14 @@ function ProductInner() {
     const addProduct = () => {
         setAmount(amount + 1)
         setPrice(price + product.currentPrice)
+        setOldPrice(oldPrice + product.oldPrice)
     }
     
     const removeProduct = () => {
         if (amount === 1) return
         setAmount(amount - 1)
         setPrice(price - product.currentPrice)
+        setOldPrice(oldPrice - product.oldPrice)
     }
 
     return (
@@ -92,7 +96,7 @@ function ProductInner() {
                         ) : (
                             <>
                                 <span className="current-price active">${price}.00</span>
-                                <span className="old-price">${product.oldPrice}.00</span>
+                                <span className="old-price">${oldPrice}.00</span>
                             </>
                         )}
                         <div className="product-buy-cont">
