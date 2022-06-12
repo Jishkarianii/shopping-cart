@@ -1,19 +1,24 @@
 import "./ProductInner.scss"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
+import { addToBag } from "../redux/action/checkoutAction"
 import { useSearchParams } from "react-router-dom"
 import Spinner from "./Spinner"
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import Button from "./Button"
 
-function ProductInner() {    
+function ProductInner() {
+    const dispatch = useDispatch()
+
     const [product, setProduct] = useState({})
     const [isLoaded, setIsLoaded] = useState(false)
     const [photo, setPhoto] = useState({})
     const [amount, setAmount] = useState(1)
     const [price, setPrice] = useState(0)
     const [oldPrice, setOldPrice] = useState(0)
+    const [btnText, setBtnText] = useState("ADD TO BAG")
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
@@ -42,6 +47,35 @@ function ProductInner() {
         setAmount(amount - 1)
         setPrice(price - product.currentPrice)
         setOldPrice(oldPrice - product.oldPrice)
+    }
+
+    const addToBagProduct = () => {
+        if (btnText === "ADDING..") return
+        const productItem = {
+            id: product.id,
+            title: product.title,
+            subTitle: product.subTitle,
+            photo: product.photo_1,
+            currentPrice: price,
+            oldPrice: oldPrice,
+            amount: amount
+        }
+
+        dispatch(addToBag(productItem))
+        addToBagBtnAnimation()
+    }
+
+    const addToBagBtnAnimation = () => {
+        if (btnText === "ADDING..") return
+        setBtnText("ADDING..")
+
+        setTimeout(() => {
+            setBtnText("ADDED")
+        }, 1000);
+
+        setTimeout(() => {
+            setBtnText("ADD TO BAG")
+        }, 2000);
     }
 
     return (
@@ -91,13 +125,13 @@ function ProductInner() {
                         <h2>{product.title}</h2>
                         <h4>{product.subTitle}</h4>
                         <p>{product.description}</p>
-                        {product.oldPrice === null ? (
-                            <span className="current-price">${price}.00</span>
-                        ) : (
+                        {product.oldPrice ? (
                             <>
                                 <span className="current-price active">${price}.00</span>
                                 <span className="old-price">${oldPrice}.00</span>
                             </>
+                        ) : (
+                            <span className="current-price">${price}.00</span>
                         )}
                         <div className="product-buy-cont">
                             <div className="product-amount">
@@ -105,7 +139,13 @@ function ProductInner() {
                                 <span>{amount}</span>
                                 <AddIcon onClick={addProduct} />
                             </div>
-                            <Button text="ADD TO BAG" />
+                            <Button 
+                                style={{ 
+                                    opacity: btnText === "ADDING.." ? 0.7 : 1
+                                }} 
+                                text={btnText} 
+                                onClick={addToBagProduct} 
+                            />
                         </div>
                     </div>
                 </div>

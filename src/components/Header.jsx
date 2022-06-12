@@ -14,6 +14,7 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 function Header() {
     const products = useSelector(state => state.pageProducts.products)
+    const amount = useSelector(state => state.checkout.amount)
     const dispatch = useDispatch()
 
     const [sideMenu, setSideMenu] = useState(false)
@@ -94,16 +95,16 @@ function Header() {
                         )}
                     </div>
                     <div className="shopping-bag-cont">
-                        {/* { When this condition is true && (
+                        { amount > 0 && (
                             <motion.div 
                             className="cart-counter"
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            transition={{ duration: 0.4 }}
+                            transition={{ duration: 0.2 }}
                             >
-                            1
+                            {amount}
                             </motion.div>
-                        )} */}
+                        )}
                         <SearchIcon 
                             className="search-icon" 
                             onClick={() => {
@@ -111,7 +112,9 @@ function Header() {
                             }}
                         />
                         <PersonOutlinedIcon />
-                        <ShoppingBagOutlinedIcon />
+                        <Link to="/checkout">
+                            <ShoppingBagOutlinedIcon />
+                        </Link>
                     </div>
                 </div>
             </nav>

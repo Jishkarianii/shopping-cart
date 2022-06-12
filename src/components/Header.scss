@@ -187,6 +187,7 @@ header {
                     align-items: center;
                     color: $secondary-color;
                     background-color: $counter-color;
+                    user-select: none;
                 }
             }
         }

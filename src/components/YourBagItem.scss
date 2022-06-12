@@ -1,0 +1,166 @@
+@import "./scss/variables.scss";
+
+.your-bag-item {
+    position: relative;
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    border: 1px solid $primary-color;
+    
+    .close {
+        position: absolute;
+        top: 12px;
+        right: 14px;
+        cursor: pointer;
+        z-index: 1;
+    }
+    
+    .your-bag-item-photo {
+        cursor: pointer;
+        
+        img {
+            width: 100%;
+        }
+    }
+
+    .your-bag-item-info {
+        position: relative;
+        padding: 20px 50px 20px 40px;
+        width: 100%;
+
+        .your-bag-title-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .your-bag-item-price {
+                padding: 3px;
+                
+                .current-price.active {
+                    margin-left: 5px;
+                    color: red;
+                }
+    
+                .old-price.active {
+                    text-decoration: line-through;
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        .your-bag-item-amount {
+            position: absolute;
+            left: 40px;
+            bottom: 20px;
+            padding: 10px;
+            width: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            border: 1px solid $primary-color;
+
+            svg {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .your-bag-item {
+        margin-top: 25px;
+        border: none;
+        
+        .close {
+            top: 5px;
+            right: 2px;
+            transform: scale(0.8);
+        }
+        
+        .your-bag-item-photo {
+            height: unset;
+
+            img {
+                width: 100%;
+            }
+        }
+    
+        .your-bag-item-info {
+            padding: 10px 25px 10px 20px;
+    
+            p {
+                font-size: 12px;
+            }
+
+            .your-bag-title-wrapper {
+                position: relative;
+                justify-content: flex-end;
+                
+                .title {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: calc(100% - 50px);
+                    height: 12px; 
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden; 
+                    
+                    &.active {
+                        width: calc(100% - 100px);
+                    }
+                }
+
+                .sub-title {
+                    margin-top: 20px;
+                }
+
+                .your-bag-item-price {
+                    font-size: 12px;
+                    background-color: white;
+                    z-index: 1;
+                }
+            }
+    
+            .your-bag-item-amount {
+                left: 20px;
+                bottom: 10px;
+                padding: 0;
+                width: 80px;
+                font-size: 14px;
+                border: none;
+    
+                svg {
+                    transform: scale(0.7);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 325px) {
+    .your-bag-item {
+        .close {
+            top: 0px;
+            right: 0px;
+        }
+        
+        .your-bag-item-photo {
+            height: unset;
+        }
+    
+        .your-bag-item-info {
+            padding: 5px 25px 5px 10px;
+    
+            p {
+                font-size: 11px;
+            }
+    
+            .your-bag-item-amount {
+                left: 20px;
+                bottom: 5px;
+            }
+        }
+    }
+}

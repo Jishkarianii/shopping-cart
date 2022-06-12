@@ -7,6 +7,7 @@ import Women from './pages/Women';
 import Kids from './pages/Kids';
 import Footer from "./components/Footer";
 import ProductInner from './components/ProductInner';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/women" element={<Women />} />
             <Route path="/kids" element={<Kids />} />
             <Route path="/product" element={<ProductInner />} />
+            <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Footer />
       </BrowserRouter>

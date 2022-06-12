@@ -1,0 +1,101 @@
+.your-bag {
+    max-width: 1110px;
+    min-height: calc(100vh - 200px);
+
+    .your-bag-title {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2 {
+            font-size: 36px;
+        }
+
+        a {
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+
+    .your-bag-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 50px;
+
+        .your-bag-items {
+            margin-bottom: 20px;
+
+            .your-bag-item-title {
+                margin-top: 15px;
+                font-size: 15px;
+            }
+        }
+        
+        .your-bag-order-cont {
+            .order {
+                margin-top: 15px;
+                padding: 15px;
+                border: 1px solid rgb(233,236,239);
+                height: fit-content;
+                
+                h2 {
+                    padding: 8px 0;
+                    font-size: 18px;
+                }
+    
+                div {
+                    padding: 5px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    font-size: 14px;
+                }
+            }
+
+            .btn {
+                margin-top: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .your-bag {
+        .your-bag-content {
+            grid-template-columns: 1fr;
+            gap: 0;
+            
+            .your-bag-order-cont {
+                .btn {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .your-bag {
+        .your-bag-title {
+            h2 {
+                font-size: 22px;
+            }
+    
+            a {
+                font-size: 11px;
+            }
+        }
+    
+        .your-bag-content {
+            .your-bag-items {
+                .your-bag-item-title {
+                    margin-top: 10px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
