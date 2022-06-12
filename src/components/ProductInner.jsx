@@ -51,17 +51,21 @@ function ProductInner() {
 
     const addToBagProduct = () => {
         if (btnText === "ADDING..") return
-        const productItem = {
-            id: product.id,
-            title: product.title,
-            subTitle: product.subTitle,
-            photo: product.photo_1,
-            currentPrice: price,
-            oldPrice: oldPrice,
-            amount: amount
-        }
 
-        dispatch(addToBag(productItem))
+        setTimeout(() => {
+            const productItem = {
+                id: product.id,
+                title: product.title,
+                subTitle: product.subTitle,
+                photo: product.photo_1,
+                currentPrice: price,
+                oldPrice: oldPrice,
+                amount: amount
+            }
+    
+            dispatch(addToBag(productItem))
+        }, 1000);
+
         addToBagBtnAnimation()
     }
 
