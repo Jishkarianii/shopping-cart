@@ -41,6 +41,14 @@ const checkoutReducer = (state = initialState, action) => {
                 newProducts = [...state.products, action.payload]
             }
 
+            // Save on localStorage
+            localStorage.setItem("bag", JSON.stringify({
+                amount: state.amount + action.payload.amount,
+                products: newProducts,
+                original: action.payload.oldPrice ? state.original + action.payload.oldPrice : state.original + action.payload.currentPrice,
+                total: state.total + action.payload.currentPrice
+            }))
+
             return {
                 amount: state.amount + action.payload.amount,
                 products: newProducts,
@@ -58,6 +66,14 @@ const checkoutReducer = (state = initialState, action) => {
                     total = item.currentPrice;
                 }
             })
+
+            // Save on localStorage
+            localStorage.setItem("bag", JSON.stringify({
+                amount: state.amount - amount,
+                products: state.products.filter(product => product.id !== action.payload),
+                original: state.original - original,
+                total: state.total - total
+            }))
 
             return {
                 amount: state.amount - amount,
@@ -86,6 +102,14 @@ const checkoutReducer = (state = initialState, action) => {
 
                 return product
             })
+            
+            // Save on localStorage
+            localStorage.setItem("bag", JSON.stringify({
+                amount: state.amount + 1,
+                products: incrementedProducts,
+                original: original ? state.original + original : state.original + total,
+                total: state.total + total
+            }))
 
             return {
                 amount: state.amount + 1,
@@ -115,11 +139,27 @@ const checkoutReducer = (state = initialState, action) => {
                 return product
             })
 
+            // Save on localStorage
+            localStorage.setItem("bag", JSON.stringify({
+                amount: state.amount - 1,
+                products: decrementedProducts,
+                original: original ? state.original - original : state.original - total,
+                total: state.total - total
+            }))
+
             return {
                 amount: state.amount - 1,
                 products: decrementedProducts,
                 original: original ? state.original - original : state.original - total,
                 total: state.total - total
+            }
+
+        case "SET_DATA_FROM_LOCALSTORAGE":
+            return {
+                amount: action.payload.amount,
+                products: action.payload.products,
+                original: action.payload.original,
+                total: action.payload.total
             }
 
         default:

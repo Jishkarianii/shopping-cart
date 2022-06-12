@@ -1,5 +1,8 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setDataFromLocalStorage } from "./redux/action/checkoutAction";
 import Header from "./components/Header";
 import All from './pages/All';
 import Men from './pages/Men';
@@ -10,6 +13,14 @@ import ProductInner from './components/ProductInner';
 import Checkout from './pages/Checkout';
 
 function App() {
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    // Get data from localStorage
+    if (localStorage.getItem("bag") === null) return
+    dispatch(setDataFromLocalStorage(JSON.parse(localStorage.getItem("bag"))))
+  }, [])
+
   return (
     <div className="App">
       <BrowserRouter>

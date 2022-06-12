@@ -25,3 +25,10 @@ export const decrementItem = id => {
         payload: id
     }
 }
+
+export const setDataFromLocalStorage = data => {
+    return {
+        type: "SET_DATA_FROM_LOCALSTORAGE",
+        payload: data
+    }
+}
