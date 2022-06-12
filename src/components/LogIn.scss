@@ -1,0 +1,98 @@
+@import "./scss/variables.scss";
+
+.log-in {
+    margin-top: 40px;
+    min-height: calc(100vh - 220px);
+
+    &.container {
+        max-width: 450px;
+    }
+
+    .log-in-wrapper {
+        padding: 40px 15px;
+        border: 1px solid rgb(150, 150, 150);
+
+        h2 {
+            font-size: 36px;
+        }
+        
+        a {
+            width: fit-content;
+            margin-top: 10px;
+            display: block;
+            font-size: 15px;
+            text-decoration: underline;
+        }
+        
+        form {
+            margin-top: 20px;
+            display: grid;
+            gap: 20px;
+            
+            .inp {
+                padding: 15px;
+                border: 1px solid rgb(150, 150, 150);
+                outline: none;
+                
+                &:focus {
+                    border: 1px solid $primary-color;
+                }
+            }
+    
+            .check {
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                
+                input {
+                    width: 18px;
+                    height: 18px;
+                    accent-color: $primary-color;
+                    cursor: pointer;
+                }
+    
+                span {
+                    margin-left: 10px;
+                    font-size: 15px;
+                }
+            }
+    
+            .btn {
+                max-width: 120px;
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .log-in {
+        .log-in-wrapper {
+            padding: 0;
+            border: none;
+    
+            h2 {
+                font-size: 32px;
+            }
+            
+            a {
+                font-size: 14px;
+            }
+            
+            form {
+                .check {
+                    span {
+                        margin-left: 8px;
+                        font-size: 14px;
+                    }
+                }
+        
+                .btn {
+                    max-width: 110px;
+                    font-size: 12px;
+                }
+            }
+        }
+    }   
+}

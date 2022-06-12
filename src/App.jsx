@@ -11,6 +11,7 @@ import Kids from './pages/Kids';
 import Footer from "./components/Footer";
 import ProductInner from './components/ProductInner';
 import Checkout from './pages/Checkout';
+import LogIn from './components/LogIn';
 
 function App() {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ function App() {
             <Route path="/kids" element={<Kids />} />
             <Route path="/product" element={<ProductInner />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/login" element={<LogIn />} />
         </Routes>
         <Footer />
       </BrowserRouter>

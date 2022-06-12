@@ -111,7 +111,9 @@ function Header() {
                                 setSearchBar(!searchBar)
                             }}
                         />
-                        <PersonOutlinedIcon />
+                        <Link to="/login">
+                            <PersonOutlinedIcon />
+                        </Link>
                         <Link to="/checkout">
                             <ShoppingBagOutlinedIcon />
                         </Link>

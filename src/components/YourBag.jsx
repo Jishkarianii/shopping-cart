@@ -14,7 +14,7 @@ function YourBag() {
         <section className="your-bag container">
             <div className="your-bag-title">
                 <h2>YOUR BAG</h2>
-                <Link to="/">LOGIN AND CHECKOUT FASTER</Link>
+                <Link to="/login">LOGIN AND CHECKOUT FASTER</Link>
             </div>
             <div className="your-bag-content">
                 <div className="your-bag-items">
@@ -65,7 +65,9 @@ function YourBag() {
                             <strong>${total}.00</strong>
                         </div>
                     </div>
-                    <Button text="CHECKOUT" />
+                    <Link to="/login">
+                        <Button text="CHECKOUT" />
+                    </Link>
                 </div>
             </div>
         </section>
